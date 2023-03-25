@@ -6,7 +6,7 @@ export default function Layout({ title, children }) {
     return (
         <>
             <Head>
-                <title>{title ? title + ' - Amazona' : 'Amazona'}</title>
+                <title>{title ? title + ' - React Shop' : 'React Shop'}</title>
                 <meta name="description" content="Ecommerce Website" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -15,7 +15,7 @@ export default function Layout({ title, children }) {
                 <header>
                     <nav className="flex h-12 items-center px-4 justify-between shadow-md">
                         <Link legacyBehavior href="/">
-                            <a className="text-lg font-bold">amazona</a>
+                            <a className="text-lg font-bold">React Shop</a>
                         </Link>
                         <div>
                             <Link legacyBehavior href="/cart">
