@@ -43,79 +43,85 @@ export default function Layout({ title, children }) {
 
             <ToastContainer position="bottom-center" limit={1} />
 
-            <div className="flex min-h-screen flex-col justify-between ">
+            <div className="flex min-h-screen flex-col justify-between text-black">
                 <header>
-                    <nav className="flex h-12 items-center px-4 justify-between shadow-md">
-                        <Link legacyBehavior href="/">
-                            <a className="text-lg font-bold">Next Shop</a>
-                        </Link>
-                        <form onSubmit={submitHandler} className="mx-auto  hidden w-full justify-center md:flex">
-                            <input
-                                onChange={(e) => setQuery(e.target.value)}
-                                type="text"
-                                className="rounded-tr-none rounded-br-none p-1 text-sm   focus:ring-0"
-                                placeholder="Search products"
-                            />
-                            <button
-                                className="rounded rounded-tl-none rounded-bl-none bg-amber-300 p-1 text-sm dark:text-black"
-                                type="submit"
-                                id="button-addon2"
-                            >
-                                <MagnifyingGlassIcon className="h-5 w-5"></MagnifyingGlassIcon>
-                            </button>
-                        </form>
-                        <div>
-                            <Link legacyBehavior href="/cart">
-                                <a className="p-2">
-                                    <ShoppingCartIcon className="h-5 w-5" />
-                                    {cartItemsCount > 0 && (
-                                        <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                                            {cartItemsCount}
-                                        </span>
-                                    )}
-                                </a>
+                    <nav className="flex h-20 items-center px-4 shadow-md">
+                        <div className="flex-1">
+                            <Link legacyBehavior href="/">
+                                <a className="text-lg font-bold">Next Shop</a>
                             </Link>
-
-                            {status === 'loading' ? (
-                                'Loading'
-                            ) : session?.user ? (
-                                <Menu as="div" className="relative inline-block">
-                                    <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
-                                    <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
-                                        <Menu.Item>
-                                            <DropdownLink className="dropdown-link" href="/profile">
-                                                Profile
-                                            </DropdownLink>
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <DropdownLink className="dropdown-link" href="/order-history">
-                                                Order History
-                                            </DropdownLink>
-                                        </Menu.Item>
-                                        {session.user.isAdmin && (
+                        </div>
+                        <div className="flex-1">
+                            <form onSubmit={submitHandler} className="mx-auto  hidden w-full justify-center md:flex">
+                                <input
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    type="text"
+                                    className="rounded-tr-none rounded-br-none p-1 text-sm focus:ring-0"
+                                    placeholder="Search products"
+                                />
+                                <button
+                                    className="rounded rounded-tl-none rounded-bl-none bg-blue-300 p-1 text-sm dark:text-black"
+                                    type="submit"
+                                    id="button-addon2"
+                                >
+                                    <MagnifyingGlassIcon className="h-5 w-5"></MagnifyingGlassIcon>
+                                </button>
+                            </form>
+                        </div>
+                        <div className="flex-1">
+                            <div className="flex flex-row-reverse items-center">
+                                {status === 'loading' ? (
+                                    'Loading'
+                                ) : session?.user ? (
+                                    <Menu as="div" className="relative inline-block">
+                                        <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
+                                        <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                                             <Menu.Item>
-                                                <DropdownLink className="dropdown-link" href="/admin/dashboard">
-                                                    Admin Dashboard
+                                                <DropdownLink className="dropdown-link" href="/profile">
+                                                    Profile
                                                 </DropdownLink>
                                             </Menu.Item>
+                                            <Menu.Item>
+                                                <DropdownLink className="dropdown-link" href="/order-history">
+                                                    Order History
+                                                </DropdownLink>
+                                            </Menu.Item>
+                                            {session.user.isAdmin && (
+                                                <Menu.Item>
+                                                    <DropdownLink className="dropdown-link" href="/admin/dashboard">
+                                                        Admin Dashboard
+                                                    </DropdownLink>
+                                                </Menu.Item>
+                                            )}
+                                            <Menu.Item>
+                                                <a className="dropdown-link" href="#" onClick={logoutClickHandler}>
+                                                    Logout
+                                                </a>
+                                            </Menu.Item>
+                                        </Menu.Items>
+                                    </Menu>
+                                ) : (
+                                    <Link legacyBehavior href="/login">
+                                        <a className="p-2">Login</a>
+                                    </Link>
+                                )}
+
+                                <Link legacyBehavior href="/cart">
+                                    <a className="p-2 relative">
+                                        <ShoppingCartIcon className="h-8 w-8" />
+                                        {cartItemsCount > 0 && (
+                                            <span className="absolute left-0 top-0 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                                                {cartItemsCount}
+                                            </span>
                                         )}
-                                        <Menu.Item>
-                                            <a className="dropdown-link" href="#" onClick={logoutClickHandler}>
-                                                Logout
-                                            </a>
-                                        </Menu.Item>
-                                    </Menu.Items>
-                                </Menu>
-                            ) : (
-                                <Link legacyBehavior href="/login">
-                                    <a className="p-2">Login</a>
+                                    </a>
                                 </Link>
-                            )}
+                            </div>
                         </div>
                     </nav>
                 </header>
                 <main className="container m-auto mt-4 px-4">{children}</main>
-                <footer className="flex h-10 justify-center items-center shadow-inner">
+                <footer className="flex h-20 mt-16 justify-center items-center shadow-inner">
                     <p>Copyright © 2023 by mohsen sami</p>
                 </footer>
             </div>
