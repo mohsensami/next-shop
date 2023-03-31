@@ -6,6 +6,7 @@ import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
+// import data from '../utils/data';
 
 export default function Home({ products }) {
     const { state, dispatch } = useContext(Store);

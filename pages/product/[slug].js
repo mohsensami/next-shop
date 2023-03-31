@@ -8,11 +8,14 @@ import Layout from '../../components/Layout';
 import Product from '../../models/Product';
 import db from '../../utils/db';
 import { Store } from '../../utils/Store';
+// import data from '../../utils/data';
 
 export default function ProductScreen(props) {
     const { product } = props;
     const { state, dispatch } = useContext(Store);
     const router = useRouter();
+    // const { slug } = query;
+    // const product = data.products.find((x) => x.slug === slug);
     if (!product) {
         return <Layout title="Produt Not Found">Produt Not Found</Layout>;
     }

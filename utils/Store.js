@@ -4,7 +4,9 @@ import Cookies from 'js-cookie';
 export const Store = createContext();
 
 const initialState = {
-    cart: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : { cartItems: [], shippingAddress: {}, paymentMethod: '' },
+    cart: Cookies.get('cart')
+        ? JSON.parse(Cookies.get('cart'))
+        : { cartItems: [], shippingAddress: {}, paymentMethod: '' },
 };
 
 function reducer(state, action) {
@@ -12,7 +14,9 @@ function reducer(state, action) {
         case 'CART_ADD_ITEM': {
             const newItem = action.payload;
             const existItem = state.cart.cartItems.find((item) => item.slug === newItem.slug);
-            const cartItems = existItem ? state.cart.cartItems.map((item) => (item.name === existItem.name ? newItem : item)) : [...state.cart.cartItems, newItem];
+            const cartItems = existItem
+                ? state.cart.cartItems.map((item) => (item.name === existItem.name ? newItem : item))
+                : [...state.cart.cartItems, newItem];
             Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
             return { ...state, cart: { ...state.cart, cartItems } };
         }
