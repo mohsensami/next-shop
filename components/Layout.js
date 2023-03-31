@@ -8,6 +8,8 @@ import { Menu } from '@headlessui/react';
 import 'react-toastify/dist/ReactToastify.css';
 import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
+import { useRouter } from 'next/router';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 export default function Layout({ title, children }) {
     const { status, data: session } = useSession();
@@ -23,6 +25,13 @@ export default function Layout({ title, children }) {
         Cookies.remove('cart');
         dispatch({ type: 'CART_RESET' });
         signOut({ callbackUrl: '/login' });
+    };
+    const [query, setQuery] = useState('');
+
+    const router = useRouter();
+    const submitHandler = (e) => {
+        e.preventDefault();
+        router.push(`/search?query=${query}`);
     };
     return (
         <>
@@ -40,6 +49,21 @@ export default function Layout({ title, children }) {
                         <Link legacyBehavior href="/">
                             <a className="text-lg font-bold">Next Shop</a>
                         </Link>
+                        <form onSubmit={submitHandler} className="mx-auto  hidden w-full justify-center md:flex">
+                            <input
+                                onChange={(e) => setQuery(e.target.value)}
+                                type="text"
+                                className="rounded-tr-none rounded-br-none p-1 text-sm   focus:ring-0"
+                                placeholder="Search products"
+                            />
+                            <button
+                                className="rounded rounded-tl-none rounded-bl-none bg-amber-300 p-1 text-sm dark:text-black"
+                                type="submit"
+                                id="button-addon2"
+                            >
+                                <MagnifyingGlassIcon className="h-5 w-5"></MagnifyingGlassIcon>
+                            </button>
+                        </form>
                         <div>
                             <Link legacyBehavior href="/cart">
                                 <a className="p-2">
