@@ -54,15 +54,23 @@ function CartScreen() {
                                     <tr key={item.slug} className="border-b">
                                         <td>
                                             <Link legacyBehavior href={`/product/${item.slug}`}>
-                                                <a className="flex items-center">
-                                                    <Image src={item.image} alt={item.name} width={50} height={50}></Image>
+                                                <a className="flex gap-2 items-center">
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        width={50}
+                                                        height={50}
+                                                    ></Image>
                                                     &nbsp;
                                                     {item.name}
                                                 </a>
                                             </Link>
                                         </td>
                                         <td className="p-5 text-right">
-                                            <select value={item.quantity} onChange={(e) => updateCartHandler(item, e.target.value)}>
+                                            <select
+                                                value={item.quantity}
+                                                onChange={(e) => updateCartHandler(item, e.target.value)}
+                                            >
                                                 {[...Array(item.countInStock).keys()].map((x) => (
                                                     <option key={x + 1} value={x + 1}>
                                                         {x + 1}
@@ -73,7 +81,7 @@ function CartScreen() {
                                         <td className="p-5 text-right">${item.price}</td>
                                         <td className="p-5 text-center">
                                             <button onClick={() => removeItemHandler(item)}>
-                                                <TrashIcon className="h-5 w-5"></TrashIcon>
+                                                <TrashIcon className="h-5 w-5 text-red-500"></TrashIcon>
                                             </button>
                                         </td>
                                     </tr>
@@ -85,11 +93,15 @@ function CartScreen() {
                         <ul>
                             <li>
                                 <div className="pb-3 text-xl">
-                                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
+                                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                                 </div>
                             </li>
                             <li>
-                                <button onClick={() => router.push('login?redirect=/shipping')} className="primary-button w-full">
+                                <button
+                                    onClick={() => router.push('login?redirect=/shipping')}
+                                    className="primary-button w-full"
+                                >
                                     Check Out
                                 </button>
                             </li>
