@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { MagnifyingGlassIcon, ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 export default function Layout({ title, children }) {
     const { status, data: session } = useSession();
@@ -67,7 +67,7 @@ export default function Layout({ title, children }) {
                         <div>
                             <Link legacyBehavior href="/cart">
                                 <a className="p-2">
-                                    Cart
+                                    <ShoppingCartIcon className="h-5 w-5" />
                                     {cartItemsCount > 0 && (
                                         <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                                             {cartItemsCount}

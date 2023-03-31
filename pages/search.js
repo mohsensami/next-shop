@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
-import { TrashIcon } from '@heroicons/react/24/solid';
+import { XCircleIcon } from '@heroicons/react/24/solid';
 import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
@@ -160,7 +160,7 @@ export default function Search(props) {
                             rating !== 'all' ||
                             price !== 'all' ? (
                                 <button onClick={() => router.push('/search')}>
-                                    <TrashIcon className="h-5 w-5" />
+                                    <XCircleIcon className="h-5 w-5" />
                                 </button>
                             ) : null}
                         </div>
