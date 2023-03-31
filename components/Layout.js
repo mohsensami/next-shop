@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
-import { MagnifyingGlassIcon, ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { MagnifyingGlassIcon, ShoppingCartIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
 
 export default function Layout({ title, children }) {
     const { status, data: session } = useSession();
@@ -45,8 +45,9 @@ export default function Layout({ title, children }) {
 
             <div className="flex min-h-screen flex-col justify-between text-black">
                 <header>
-                    <nav className="flex h-20 items-center px-4 shadow-md">
-                        <div className="flex-1">
+                    <nav className="flex h-20 items-center px-4 shadow-md bg-gray-100">
+                        <div className="flex items-center gap-2 flex-1">
+                            <ShoppingBagIcon className="h-8 w-8 text-blue-300"></ShoppingBagIcon>
                             <Link legacyBehavior href="/">
                                 <a className="text-lg font-bold">Next Shop</a>
                             </Link>
@@ -73,7 +74,7 @@ export default function Layout({ title, children }) {
                                 {status === 'loading' ? (
                                     'Loading'
                                 ) : session?.user ? (
-                                    <Menu as="div" className="relative inline-block">
+                                    <Menu as="div" className="relative inline-block z-50">
                                         <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
                                         <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                                             <Menu.Item>
@@ -108,9 +109,9 @@ export default function Layout({ title, children }) {
 
                                 <Link legacyBehavior href="/cart">
                                     <a className="p-2 relative">
-                                        <ShoppingCartIcon className="h-8 w-8" />
+                                        <ShoppingCartIcon className="h-7 w-7" />
                                         {cartItemsCount > 0 && (
-                                            <span className="absolute left-0 top-0 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                                            <span className="absolute left-0 top-0 rounded-full bg-blue-300 px-2 py-1 text-xs font-bold text-white">
                                                 {cartItemsCount}
                                             </span>
                                         )}
@@ -121,7 +122,7 @@ export default function Layout({ title, children }) {
                     </nav>
                 </header>
                 <main className="container m-auto mt-4 px-4">{children}</main>
-                <footer className="flex h-20 mt-16 justify-center items-center shadow-inner">
+                <footer className="flex h-20 mt-16 justify-center items-center shadow-inner bg-gray-300">
                     <p>Copyright © 2023 by mohsen sami</p>
                 </footer>
             </div>

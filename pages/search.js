@@ -94,7 +94,7 @@ export default function Search(props) {
     return (
         <Layout title="search">
             <div className="grid md:grid-cols-4 md:gap-5">
-                <div>
+                <div className="card p-2">
                     <div className="my-3">
                         <h2>Categories</h2>
                         <select className="w-full" value={category} onChange={categoryHandler}>
